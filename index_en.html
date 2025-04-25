@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangzhou May Day Travel Guide</title>
+    <!-- Import Font Awesome icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0e7490; /* Hangzhou West Lake Blue */
+            --secondary-color: #10b981; /* West Lake Green */
+            --accent-color: #f59e0b; /* West Lake Golden Yellow */
+            --light-bg: #f0f9ff;
+            --dark-text: #1e293b;
+            --light-text: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        
+        .language-switcher {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            gap: 15px;
+        }
+        
+        .language-switcher a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .language-switcher a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-switcher .active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg);
+            background-image: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.05)" d="M30,10 C40,20 40,30 30,40 C20,50 20,60 30,70 C40,80 40,90 30,90 L90,90 L90,10 L30,10 Z"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: var(--secondary-color);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h3 i {
+            color: var(--accent-color);
+            font-size: 0.9em;
+        }
+
+        .day-plan {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .day-plan:hover {
+            transform: translateY(-3px);
+        }
+
+        .weather-info {
+            background: linear-gradient(to right, #e0f2fe, #bae6fd);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .weather-info ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .weather-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .weather-info i {
+            color: var(--accent-color);
+            font-size: 1.2em;
+            width: 25px;
+            text-align: center;
+        }
+
+        .attraction {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            transition: transform 0.3s ease;
+        }
+
+        .attraction:hover {
+            transform: translateX(5px);
+        }
+
+        .attraction:last-child {
+            border-bottom: none;
+        }
+
+        .food-item, .hotel-item {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .food-item:hover, .hotel-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .tips {
+            background: linear-gradient(to right, #fef3c7, #fde68a);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .tips::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .tips ul {
+            padding-left: 25px;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .tips li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: -25px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: var(--dark-text);
+            font-size: 0.9em;
+            background: linear-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <a href="index.html"><i class="fas fa-globe-asia"></i> 中文</a>
+        <a href="index_en.html" class="active"><i class="fas fa-globe-americas"></i> English</a>
+    </div>
+    
+    <header>
+        <h1><i class="fas fa-map-marked-alt"></i> Hangzhou May Day Travel Guide</h1>
+        <p><i class="fas fa-umbrella-beach"></i> A Relaxing and Enjoyable Trip to Hangzhou</p>
+    </header>
+
+    <div class="weather-info">
+        <h2><i class="fas fa-cloud-sun"></i> Hangzhou Weather Forecast During May Day Holiday</h2>
+        <ul>
+            <li><i class="fas fa-cloud"></i> <strong>April 25 (Friday)</strong>: Cloudy, Temperature 13-21°C</li>
+            <li><i class="fas fa-cloud-rain"></i> <strong>April 26 (Saturday)</strong>: Cloudy with Light Rain, Temperature 15-25°C</li>
+            <li><i class="fas fa-cloud-showers-heavy"></i> <strong>April 27 (Sunday)</strong>: Light Rain, Temperature 16-22°C</li>
+            <li><i class="fas fa-sun"></i> <strong>April 28 (Monday)</strong>: Cloudy to Sunny, Temperature 15-26°C</li>
+        </ul>
+    </div>
+
+    <h2><i class="fas fa-calendar-alt"></i> Itinerary</h2>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-water"></i> Day 1 (April 25, Friday) - West Lake Scenic Area</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>Morning</strong>: Visit West Lake Scenic Area, including Broken Bridge, Bai Causeway, Su Causeway</li>
+            <li><i class="fas fa-utensils"></i> <strong>Noon</strong>: Enjoy lunch in the Lakeside area</li>
+            <li><i class="fas fa-monument"></i> <strong>Afternoon</strong>: Visit Leifeng Pagoda, enjoy the "Sunset Glow over Leifeng Pagoda"</li>
+            <li><i class="fas fa-moon"></i> <strong>Evening</strong>: Stroll along West Lake, enjoy the night view</li>
+        </ul>
+    </div>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-pray"></i> Day 2 (April 26, Saturday) - Lingyin Temple and Xixi Wetland</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>Morning</strong>: Visit Lingyin Temple and Feilai Peak (better weather in the morning)</li>
+            <li><i class="fas fa-utensils"></i> <strong>Noon</strong>: Lunch near Lingyin Road</li>
+            <li><i class="fas fa-leaf"></i> <strong>Afternoon</strong>: Visit Xixi Wetland (possible rain in the afternoon, Xixi Wetland has indoor exhibitions)</li>
+            <li><i class="fas fa-theater-masks"></i> <strong>Evening</strong>: Songcheng Scenic Area, watch the "Romance of the Song Dynasty" show (indoor activity, suitable for rainy days)</li>
+        </ul>
+    </div>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-umbrella"></i> Day 3 (April 27, Sunday) - Mainly Indoor Activities</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>Morning</strong>: Visit Liangzhu Ancient City Ruins Park (has indoor museum)</li>
+            <li><i class="fas fa-utensils"></i> <strong>Noon</strong>: Lunch near Liangzhu</li>
+            <li><i class="fas fa-shopping-bag"></i> <strong>Afternoon</strong>: Shopping or leisure time in Hangzhou (indoor activities in malls during rainy days)</li>
+            <li><i class="fas fa-drumstick-bite"></i> <strong>Evening</strong>: Taste Hangzhou specialty foods</li>
+        </ul>
+    </div>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-mountain"></i> Day 4 (April 28, Monday) - Thousand Island Lake Day Trip</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>Morning</strong>: Travel to Thousand Island Lake (weather improves, suitable for outdoor activities)</li>
+            <li><i class="fas fa-utensils"></i> <strong>Noon</strong>: Enjoy lunch at Thousand Island Lake</li>
+            <li><i class="fas fa-ship"></i> <strong>Afternoon</strong>: Thousand Island Lake cruise, enjoy the lake and mountain scenery</li>
+            <li><i class="fas fa-bus"></i> <strong>Evening</strong>: Return to Hangzhou city</li>
+        </ul>
+    </div>
+
+    <h2><i class="fas fa-landmark"></i> Attraction Details</h2>
+
+    <div class="attraction">
+        <h3><i class="fas fa-water"></i> West Lake Scenic Area</h3>
+        <p>Hangzhou's most famous attraction, including Broken Bridge, Bai Causeway, Su Causeway and other Ten Scenes. West Lake is surrounded by mountains on three sides, with beautiful scenery, and is a representative work of traditional Chinese gardens. West Lake not only has beautiful natural scenery but also rich cultural landscapes such as Bai Causeway, Su Causeway, Three Pools Mirroring the Moon, etc. Each scenic spot has its unique charm and historical stories.</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-monument"></i> Leifeng Pagoda</h3>
+        <p>Located on Sunset Hill on the south bank of West Lake, it is one of Hangzhou's famous ancient sites, offering a panoramic view of West Lake. Leifeng Pagoda was originally built during the Five Dynasties and Ten Kingdoms period and is famous for the "Legend of the White Snake" story. The current Leifeng Pagoda is rebuilt on the original site. The pagoda houses exhibitions of cultural relics, displaying a large number of excavated artifacts, including Buddhist scriptures, statues, and other precious cultural relics.</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-pray"></i> Lingyin Temple</h3>
+        <p>A famous Buddhist temple in China, built during the Eastern Jin Dynasty, with flourishing incense offerings, surrounded by mountains, and beautiful scenery. Lingyin Temple is one of the oldest temples in Hangzhou, with buildings such as the Hall of Heavenly Kings, the Grand Hall of the Great Sage, the Medicine Buddha Hall, and numerous exquisite Buddha statues and stone carvings. There are many ancient cave statues on Feilai Peak in front of the temple, representing the art of southern Chinese cave temples.</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-leaf"></i> Xixi Wetland</h3>
+        <p>A national wetland park, known as "Hangzhou's Kidney," with well-preserved natural ecology, it is a rare "green lung" in the city. Xixi Wetland is China's first national wetland park, preserving the authentic water town style, with the unique charm of "wetlands in the city, homes in the wetlands." Visitors can take rowing boats to tour the park and experience the tranquility and beauty of the Jiangnan water town.</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-theater-masks"></i> Songcheng Scenic Area</h3>
+        <p>A large-scale comprehensive theme park based on Song Dynasty culture, with "Romance of the Song Dynasty" as a must-see performance. Songcheng Scenic Area recreates the street scenes of Song Dynasty Hangzhou, with various traditional handicraft displays and interactive experiences. "Romance of the Song Dynasty" is a large-scale performance that combines modern technology with traditional culture, showcasing Hangzhou's historical culture and legendary stories.</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-archway"></i> Liangzhu Ancient City Ruins</h3>
+        <p>A World Cultural Heritage site, showcasing the development of early urban civilization in China 5,000 years ago. Liangzhu Ancient City Ruins is a representative site of the late Neolithic Liangzhu Culture in China, where a large number of exquisite jade and pottery artifacts have been unearthed. The site park has exhibition halls that allow visitors to learn about the brilliant achievements of Liangzhu civilization through artifact displays and multimedia presentations.</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-mountain"></i> Thousand Island Lake</h3>
+        <p>One of China's largest artificial freshwater lakes, with islands scattered throughout, clear water, and beautiful environment. Thousand Island Lake is named for its 1,078 islands and was formed after the construction of the Xin'an River Hydroelectric Station. The lake area's water quality reaches national first-class standards and is known as a "natural oxygen bar." Visitors can take boat tours of the lake area, visit islands, and experience activities such as fishing and swimming.</p>
+    </div>
+
+    <h2><i class="fas fa-utensils"></i> Food Recommendations</h2>
+
+    <div class="food-item">
+        <h3><i class="fas fa-fish"></i> West Lake Fish in Vinegar Sauce</h3>
+        <p>A traditional Hangzhou dish, made with grass carp from West Lake, with tender fish meat and a moderately sweet and sour taste. The fish is kept intact during cooking, crispy outside and tender inside, with a bright red color, and is one of the representative dishes of Hangzhou cuisine.</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-bacon"></i> Dongpo Pork</h3>
+        <p>Created by Song Dynasty literary figure Su Dongpo, it is fatty but not greasy and melts in the mouth. Made by slow-cooking pork belly, the meat is tender, bright red, and aromatic, making it the most characteristic traditional famous dish in Hangzhou.</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-leaf"></i> Longjing Shrimp</h3>
+        <p>Shrimp stir-fried with Longjing tea, fresh and delicious. Fresh shrimp are stir-fried with Longjing tea leaves, resulting in tender shrimp with a light tea fragrance, fresh and refreshing, a unique tea culture dish in Hangzhou.</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-drumstick-bite"></i> Beggar's Chicken</h3>
+        <p>Chicken roasted wrapped in lotus leaves and clay, preserving the original flavor. Legend has it that it originated from a beggar's cooking method and has now become a famous specialty dish in Hangzhou. The chicken meat is tender and juicy, with the fragrance of lotus leaves.</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-bread-slice"></i> Hangzhou Xiaolongbao</h3>
+        <p>Thin skin, plentiful filling, rich soup. Hangzhou xiaolongbao has a meat filling, paper-thin skin that breaks with one bite, releasing a burst of soup, and is a representative breakfast and snack in Hangzhou.</p>
+    </div>
+
+    <h2><i class="fas fa-bed"></i> Accommodation Suggestions</h2>
+
+    <div class="hotel-item">
+        <h3><i class="fas fa-hotel"></i> Hotels Around West Lake</h3>
+        <p>Such as Hangzhou Grand Hyatt Hotel, located at 28 Hubin Road, adjacent to West Lake, with convenient transportation, complete facilities, and views of West Lake.</p>
+    </div>
+
+    <div class="hotel-item">
+        <h3><i class="fas fa-city"></i> City Center Hotels</h3>
+        <p>Such as Hangzhou Hotel, located near Wulin Square, surrounded by complete commercial facilities, convenient transportation, suitable for shopping and tasting food.</p>
+    </div>
+
+    <div class="tips">
+        <h2><i class="fas fa-lightbulb"></i> Travel Tips</h2>
+        <ul>
+            <li>The May Day period is the peak tourist season, it is recommended to book hotels and attraction tickets in advance.</li>
+            <li>Hangzhou has well-developed public transportation, you can use the subway, bus, or taxi to reach various attractions.</li>
+            <li>You can also consider renting bicycles, cycling around West Lake is a very pleasant experience.</li>
+            <li>Bring rain gear to prevent rainy weather from affecting your itinerary.</li>
+            <li>West Lake Scenic Area is open for free, but some attractions such as Leifeng Pagoda and Lingyin Temple require separate tickets.</li>
+            <li>When tasting local food, you can choose well-reviewed traditional restaurants to experience authentic Hangzhou cuisine.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p><i class="fas fa-heart"></i> Wish you a pleasant May Day holiday in Hangzhou!</p>
+        <p><i class="fas fa-map-marked-alt"></i> This guide is made based on Amap data, for reference only.</p>
+        <p><i class="fas fa-copyright"></i> 2025 Hangzhou Travel Guide</p>
+    </footer>
+</body>
+</html>

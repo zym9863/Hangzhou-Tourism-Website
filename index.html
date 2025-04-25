@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杭州五一旅游攻略</title>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0e7490; /* 杭州西湖蓝 */
+            --secondary-color: #10b981; /* 西湖绿 */
+            --accent-color: #f59e0b; /* 西湖金黄 */
+            --light-bg: #f0f9ff;
+            --dark-text: #1e293b;
+            --light-text: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .language-switcher {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            gap: 15px;
+        }
+
+        .language-switcher a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .language-switcher a:hover {
+            color: var(--secondary-color);
+        }
+
+        .language-switcher .active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg);
+            background-image: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.05)" d="M30,10 C40,20 40,30 30,40 C20,50 20,60 30,70 C40,80 40,90 30,90 L90,90 L90,10 L30,10 Z"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: var(--secondary-color);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h3 i {
+            color: var(--accent-color);
+            font-size: 0.9em;
+        }
+
+        .day-plan {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .day-plan:hover {
+            transform: translateY(-3px);
+        }
+
+        .weather-info {
+            background: linear-gradient(to right, #e0f2fe, #bae6fd);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .weather-info ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .weather-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .weather-info i {
+            color: var(--accent-color);
+            font-size: 1.2em;
+            width: 25px;
+            text-align: center;
+        }
+
+        .attraction {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            transition: transform 0.3s ease;
+        }
+
+        .attraction:hover {
+            transform: translateX(5px);
+        }
+
+        .attraction:last-child {
+            border-bottom: none;
+        }
+
+        .food-item, .hotel-item {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .food-item:hover, .hotel-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .tips {
+            background: linear-gradient(to right, #fef3c7, #fde68a);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .tips::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .tips ul {
+            padding-left: 25px;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .tips li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: -25px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: var(--dark-text);
+            font-size: 0.9em;
+            background: linear-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <a href="index.html" class="active"><i class="fas fa-globe-asia"></i> 中文</a>
+        <a href="index_en.html"><i class="fas fa-globe-americas"></i> English</a>
+    </div>
+
+    <header>
+        <h1><i class="fas fa-map-marked-alt"></i> 杭州五一旅游攻略</h1>
+        <p><i class="fas fa-umbrella-beach"></i> 轻松愉悦的杭州之旅</p>
+    </header>
+
+    <div class="weather-info">
+        <h2><i class="fas fa-cloud-sun"></i> 五一期间杭州天气预报</h2>
+        <ul>
+            <li><i class="fas fa-cloud"></i> <strong>4月25日（周五）</strong>：多云，温度13-21°C</li>
+            <li><i class="fas fa-cloud-rain"></i> <strong>4月26日（周六）</strong>：多云转小雨，温度15-25°C</li>
+            <li><i class="fas fa-cloud-showers-heavy"></i> <strong>4月27日（周日）</strong>：小雨，温度16-22°C</li>
+            <li><i class="fas fa-sun"></i> <strong>4月28日（周一）</strong>：多云转晴，温度15-26°C</li>
+        </ul>
+    </div>
+
+    <h2><i class="fas fa-calendar-alt"></i> 行程安排</h2>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-water"></i> 第一天（4月25日 周五）- 西湖风景区</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>上午</strong>：游览西湖景区，包括断桥残雪、白堤、苏堤春晓</li>
+            <li><i class="fas fa-utensils"></i> <strong>中午</strong>：在湖滨区享用午餐</li>
+            <li><i class="fas fa-monument"></i> <strong>下午</strong>：游览雷峰塔，欣赏"雷峰夕照"</li>
+            <li><i class="fas fa-moon"></i> <strong>晚上</strong>：在西湖边漫步，欣赏西湖夜景</li>
+        </ul>
+    </div>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-pray"></i> 第二天（4月26日 周六）- 灵隐寺与西溪湿地</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>上午</strong>：游览灵隐寺和飞来峰（上午天气较好）</li>
+            <li><i class="fas fa-utensils"></i> <strong>中午</strong>：在灵隐路附近用餐</li>
+            <li><i class="fas fa-leaf"></i> <strong>下午</strong>：参观西溪湿地（下午可能有雨，西溪湿地有室内展馆）</li>
+            <li><i class="fas fa-theater-masks"></i> <strong>晚上</strong>：宋城景区，观看《宋城千古情》演出（室内活动，适合雨天）</li>
+        </ul>
+    </div>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-umbrella"></i> 第三天（4月27日 周日）- 室内活动为主</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>上午</strong>：参观良渚古城遗址公园（有室内博物馆）</li>
+            <li><i class="fas fa-utensils"></i> <strong>中午</strong>：在良渚附近用餐</li>
+            <li><i class="fas fa-shopping-bag"></i> <strong>下午</strong>：杭州购物或休闲时间（雨天可在商场内活动）</li>
+            <li><i class="fas fa-drumstick-bite"></i> <strong>晚上</strong>：品尝杭州特色美食</li>
+        </ul>
+    </div>
+
+    <div class="day-plan">
+        <h3><i class="fas fa-mountain"></i> 第四天（4月28日 周一）- 千岛湖一日游</h3>
+        <ul>
+            <li><i class="far fa-clock"></i> <strong>上午</strong>：前往千岛湖（天气转好，适合户外活动）</li>
+            <li><i class="fas fa-utensils"></i> <strong>中午</strong>：在千岛湖享用午餐</li>
+            <li><i class="fas fa-ship"></i> <strong>下午</strong>：千岛湖游船，欣赏湖光山色</li>
+            <li><i class="fas fa-bus"></i> <strong>晚上</strong>：返回杭州市区</li>
+        </ul>
+    </div>
+
+    <h2><i class="fas fa-landmark"></i> 景点详情</h2>
+
+    <div class="attraction">
+        <h3><i class="fas fa-water"></i> 西湖景区</h3>
+        <p>杭州最著名的景点，包括断桥残雪、白堤、苏堤春晓等十景。西湖三面环山，风景秀丽，是中国传统园林的代表作。西湖不仅有优美的自然风光，还有丰富的人文景观，如白堤、苏堤、三潭印月等，每个景点都有其独特的魅力和历史故事。</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-monument"></i> 雷峰塔</h3>
+        <p>位于西湖南岸夕照山上，是杭州著名的古迹之一，可以俯瞰西湖全景。雷峰塔始建于五代吴越国时期，因《白蛇传》故事而闻名。现在的雷峰塔是在原址上重建的，塔内设有文物展览，展示了大量出土文物，包括佛经、佛像等珍贵文物。</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-pray"></i> 灵隐寺</h3>
+        <p>中国佛教著名寺院，始建于东晋，香火鼎盛，周围群山环抱，景色优美。灵隐寺是杭州最古老的寺庙之一，寺内有天王殿、大雄宝殿、药师殿等建筑，以及众多精美的佛像和石刻。寺前的飞来峰上有许多古代石窟造像，是中国南方石窟艺术的代表。</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-leaf"></i> 西溪湿地</h3>
+        <p>国家级湿地公园，有"杭州之肾"之称，自然生态保存完好，是都市中难得的"绿肺"。西溪湿地是中国首个国家湿地公园，保留了原汁原味的水乡风貌，有"城中有湿地，湿地有人家"的独特魅力。园内可以乘坐摇橹船游览，感受江南水乡的宁静与美丽。</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-theater-masks"></i> 宋城景区</h3>
+        <p>以宋代文化为主题的大型综合性主题公园，《宋城千古情》是必看演出。宋城景区重现了宋代杭州的市井风貌，有各种传统手工艺展示和互动体验。《宋城千古情》是一场融合了现代科技与传统文化的大型演出，展现了杭州的历史文化和传说故事。</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-archway"></i> 良渚古城遗址</h3>
+        <p>世界文化遗产，展示了5000年前中国早期城市文明的发展。良渚古城遗址是中国新石器时代晚期良渚文化的代表性遗址，出土了大量精美的玉器和陶器。遗址公园内有展示馆，通过文物展示和多媒体演示，让游客了解良渚文明的辉煌成就。</p>
+    </div>
+
+    <div class="attraction">
+        <h3><i class="fas fa-mountain"></i> 千岛湖</h3>
+        <p>中国最大的人工淡水湖之一，湖中岛屿星罗棋布，水质清澈，环境优美。千岛湖因湖中有1078个岛屿而得名，是新安江水电站建成后形成的人工湖。湖区水质达到国家一级标准，是著名的"天然氧吧"。游客可以乘船游览湖区，登岛观光，体验垂钓、游泳等水上活动。</p>
+    </div>
+
+    <h2><i class="fas fa-utensils"></i> 美食推荐</h2>
+
+    <div class="food-item">
+        <h3><i class="fas fa-fish"></i> 西湖醋鱼</h3>
+        <p>杭州传统名菜，选用西湖的草鱼制作，鱼肉鲜嫩，口味酸甜适中。烹饪时保持鱼形完整，外酥里嫩，色泽红亮，是杭州菜的代表作之一。</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-bacon"></i> 东坡肉</h3>
+        <p>由宋代文学家苏东坡创制，肥而不腻，入口即化。选用五花肉慢火炖煮，肉质酥烂，色泽红亮，香气四溢，是杭州最具特色的传统名菜。</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-leaf"></i> 龙井虾仁</h3>
+        <p>用龙井茶炒制的虾仁，清香可口。新鲜的虾仁与龙井茶叶一起翻炒，虾仁鲜嫩，带有淡淡的茶香，清新爽口，是杭州独特的茶文化美食。</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-drumstick-bite"></i> 叫花鸡</h3>
+        <p>用荷叶和泥巴包裹烤制的鸡，保留了原汁原味。传说源于乞丐的烹饪方法，现在已成为杭州著名的特色菜。鸡肉鲜嫩多汁，带有荷叶的清香。</p>
+    </div>
+
+    <div class="food-item">
+        <h3><i class="fas fa-bread-slice"></i> 杭州小笼包</h3>
+        <p>皮薄馅多，汤汁丰富。杭州小笼包以鲜肉为馅，皮薄如纸，一咬即破，汤汁四溢，是杭州早餐和小吃的代表。</p>
+    </div>
+
+    <h2><i class="fas fa-bed"></i> 住宿建议</h2>
+
+    <div class="hotel-item">
+        <h3><i class="fas fa-hotel"></i> 西湖周边酒店</h3>
+        <p>如杭州君悦酒店，位于湖滨路28号，紧邻西湖，交通便利，设施完善，可以欣赏到西湖美景。</p>
+    </div>
+
+    <div class="hotel-item">
+        <h3><i class="fas fa-city"></i> 市中心酒店</h3>
+        <p>如杭州大酒店，位于武林广场附近，周边商业设施齐全，交通便利，适合购物和品尝美食。</p>
+    </div>
+
+    <div class="tips">
+        <h2><i class="fas fa-lightbulb"></i> 旅行小贴士</h2>
+        <ul>
+            <li>五一期间是旅游旺季，建议提前预订酒店和景点门票。</li>
+            <li>杭州公共交通发达，可以使用地铁、公交或出租车前往各个景点。</li>
+            <li>也可以考虑租借自行车，沿着西湖骑行是非常惬意的体验。</li>
+            <li>带好雨具，以防下雨天气影响行程。</li>
+            <li>西湖景区免费开放，但部分景点如雷峰塔、灵隐寺等需要单独购票。</li>
+            <li>品尝当地美食时，可以选择口碑好的老字号餐厅，体验正宗的杭帮菜。</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p><i class="fas fa-heart"></i> 祝您在杭州度过一个愉快的五一假期！</p>
+        <p><i class="fas fa-map-marked-alt"></i> 本攻略根据高德地图数据制作，仅供参考。</p>
+        <p><i class="fas fa-copyright"></i> 2025 杭州旅游指南</p>
+    </footer>
+</body>
+</html>
