@@ -17,6 +17,17 @@
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
+        /* 深色主题 */
+        .dark-mode {
+            --primary-color: #2563eb; /* 深色西湖蓝 */
+            --secondary-color: #10b981; /* 保持绿色 */
+            --accent-color: #f59e0b; /* 保持金色 */
+            --light-bg: #1e293b; /* 深色背景 */
+            --dark-text: #f8fafc; /* 浅色文字 */
+            --light-text: #1e293b; /* 深色文字（用于亮色元素） */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
         .language-switcher {
             display: flex;
             justify-content: flex-end;
@@ -43,6 +54,36 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 1.1em;
+            padding: 5px;
+            transition: color 0.3s ease;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--secondary-color);
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .theme-toggle {
+            color: var(--accent-color);
+        }
+
+        .dark-mode .theme-toggle:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         body {
             font-family: 'Microsoft YaHei', Arial, sans-serif;
             line-height: 1.6;
@@ -52,6 +93,11 @@
             padding: 20px;
             background-color: var(--light-bg);
             background-image: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode body {
+            background-image: linear-gradient(to bottom, #1e293b, #0f172a);
         }
 
         header {
@@ -118,7 +164,11 @@
             margin-bottom: 20px;
             box-shadow: var(--shadow);
             border-left: 4px solid var(--secondary-color);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .day-plan {
+            background-color: #334155;
         }
 
         .day-plan:hover {
@@ -131,6 +181,11 @@
             border-radius: 12px;
             margin-bottom: 20px;
             box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .weather-info {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
         }
 
         .weather-info ul {
@@ -174,7 +229,12 @@
             border-radius: 12px;
             box-shadow: var(--shadow);
             border-left: 4px solid var(--accent-color);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .food-item,
+        .dark-mode .hotel-item {
+            background-color: #334155;
         }
 
         .food-item:hover, .hotel-item:hover {
@@ -188,6 +248,11 @@
             margin: 20px 0;
             box-shadow: var(--shadow);
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .tips {
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
         }
 
         .tips::before {
@@ -235,6 +300,11 @@
             background: linear-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
             border-radius: 12px;
             box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode footer {
+            background: linear-gradient(to right, rgba(51, 65, 85, 0.7), rgba(51, 65, 85, 0.3));
         }
     </style>
 </head>
@@ -242,6 +312,9 @@
     <div class="language-switcher">
         <a href="index.html" class="active"><i class="fas fa-globe-asia"></i> 中文</a>
         <a href="index_en.html"><i class="fas fa-globe-americas"></i> English</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="切换深色模式">
+            <i class="fas fa-moon"></i>
+        </button>
     </div>
 
     <header>
@@ -394,5 +467,41 @@
         <p><i class="fas fa-map-marked-alt"></i> 本攻略根据高德地图数据制作，仅供参考。</p>
         <p><i class="fas fa-copyright"></i> 2025 杭州旅游指南</p>
     </footer>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // 检查是否有保存的主题偏好
+        const savedTheme = localStorage.getItem('theme');
+
+        // 如果有保存的主题，应用它
+        if (savedTheme) {
+            htmlElement.classList.add(savedTheme);
+            // 更新图标
+            if (savedTheme === 'dark-mode') {
+                themeToggle.querySelector('i').className = 'fas fa-sun';
+            }
+        }
+
+        // 监听主题切换按钮点击事件
+        themeToggle.addEventListener('click', function() {
+            // 切换dark-mode类
+            htmlElement.classList.toggle('dark-mode');
+
+            // 更新图标
+            const icon = themeToggle.querySelector('i');
+            if (htmlElement.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+                // 保存主题偏好
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                icon.className = 'fas fa-moon';
+                // 保存主题偏好
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    </script>
 </body>
 </html>
